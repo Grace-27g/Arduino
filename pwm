@@ -1,0 +1,25 @@
+int led = 10;
+int off13 = 13;
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinmode(off13, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(off13, LOW);
+
+  for(int brightvalue = 0; brightvalue <= 255; brightvalue += 5){
+    analogWrite(led, brightvalue);
+    delay(25);
+  }
+
+  delay(1000);
+
+  for(int fadevalue = 255; fadevalue >= 0; fadevalue -= 5){
+    analogWrite(led, fadevalue);
+    delay(25);
+  }
+  
+  delay(1000);
+}
