@@ -4,35 +4,6 @@ int led = 8;
 
 float duration;
 float distance;
-int threshold = 20; // Distance in cm!
-
- void setup() {
-  pinMode(trigger, OUTPUT);
-  pinMode(echo, INPUT);
-  pinMode(led, OUTPUT);
-
-  Serial.begin(9600);
-}
-
-void loop() {
-  digitalWrite(trigger, HIGH);
-  delay(10);
-  digitalWrite(trigger, LOW);
-
-  duration = pulseIn(echo, HIGH);
-  distance = (duration * 0.0343) / 2; // Distance in cm!
-
-  if(distance >= threshold){
-    digitalWrite(led, HIGH);
-    delay(1500);
-    digitalWrite(led, LOW);
-  }
-}int trigger = 10;
-int echo = 12;
-int led = 8;
-
-float duration;
-float distance;
 int threshold = 10; // Distance in cm!
 
  void setup() {
