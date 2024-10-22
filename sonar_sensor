@@ -3,35 +3,13 @@
 int trigger = 3;
 int echo = 4;
 int led = 5;
-// Servo myservo;
+Servo.firsts;
 
 float duration;
 float distance;
 int threshold = 20;
 
-void setup() {
-  pinMode(trigger, OUTPUT);
-  pinMode(echo, INPUT);
-  pinMode(led, OUTPUT);
-  // myservo.attach(9);
-  firsts.attach(9); // Correct Servo
-}
-
-void loop() {
-  /* for(int position = 0; position <= 180; position++){
-    myservo.write(position);
-    delay(10);
-  }
-
-  for(int position = 180; position >= 0; position--){
-    myservo.write(position);
-    delay(10);
-  } */
-  firsts.write(0);    // Correct Servo
-  delay(1000);        // Correct Servo
-  firsts.write(180);  // Correct Servo
-  delay(1000);        // Correct Servo
-
+void sonar() {
   digitalWrite(trigger, HIGH);
   delay(10);
   digitalWrite(trigger, LOW);
@@ -43,5 +21,21 @@ void loop() {
     digitalWrite(led, HIGH);
     delay(1000);
     digitalWrite(led, LOW);
-  } 
+  }
+}
+
+void setup() {
+  pinMode(trigger, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(led, OUTPUT);
+  firsts.attach(9);
+}
+
+void loop() {
+  firsts.write(0);
+  sonar();
+  delay(1000);
+  firsts.write(180);
+  sonar(); 
+  delay(1000);  
 }
