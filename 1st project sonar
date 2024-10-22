@@ -1,0 +1,43 @@
+#include <Servo.h>
+
+int trigger = 3;
+int echo = 4;
+int led = 5;
+// Servo myservo;
+Servo firsts;
+
+float duration;
+float distance;
+int threshold = 20;
+
+
+void sonar() {
+digitalWrite(trigger, HIGH);
+delay(10);
+digitalWrite(trigger, LOW);
+
+duration = pulseIn(echo, HIGH);
+distance =(duration * 0.0343) / 2;
+
+if(distance <= 20){
+digitalWrite(led, HIGH);
+delay(1000);
+digitalWrite(led, LOW);
+  }
+}
+
+void setup() {
+  pinMode(trigger, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(led, OUTPUT);
+  firsts.attach(9);
+}
+
+void loop() {
+  firsts.write(0);
+  sonar();
+  delay(1000);
+  firsts.write(180);
+  sonar(); 
+  delay(1000);  
+}
