@@ -1,0 +1,15 @@
+#include <Servo.h>
+Servo firsts;
+void setup() {
+  firsts.attach(9);
+
+}
+
+void loop() {
+  firsts.write(0);
+  delay(1000);
+  firsts.write(180);
+  delay(1000);
+  
+
+}
