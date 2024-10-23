@@ -1,0 +1,56 @@
+#include <Servo.h>
+
+int trigger = 3;
+int echo = 4;
+int led = 5;
+Servo firsts;
+
+float duration;
+float distance;
+int threshold = 20;
+
+void sonar() {
+  digitalWrite(trigger, HIGH);
+  delay(10);
+  digitalWrite(trigger, LOW);
+
+  duration = pulseIn(echo, HIGH);
+  distance = (duration * 0.0343) / 2;
+
+  if (distance <= 20) {
+    digitalWrite(led, HIGH);
+    delay(1000);
+    digitalWrite(led, LOW);
+  }
+}
+
+void setup() {
+  pinMode(trigger, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(led, OUTPUT);
+  firsts.attach(9);
+}
+
+void slowRotate(int startAngle, int endAngle, int stepDelay) {
+  if (startAngle < endAngle) {
+    for (int pos = startAngle; pos <= endAngle; pos++) {
+      firsts.write(pos);
+      delay(stepDelay); // Delay between each step to slow down the rotation
+    }
+  } else {
+    for (int pos = startAngle; pos >= endAngle; pos--) {
+      firsts.write(pos);
+      delay(stepDelay); // Delay between each step to slow down the rotation
+    }
+  }
+}
+
+void loop() {
+  slowRotate(0, 180, 10);  // Rotate from 0 to 180 degrees slowly
+  sonar();
+  delay(1000);
+  
+  slowRotate(180, 0, 10);  // Rotate from 180 back to 0 slowly
+  sonar(); 
+  delay(1000);  
+}
